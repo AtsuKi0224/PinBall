@@ -35,7 +35,34 @@ public class FripperController : MonoBehaviour {
         {
             SetAngle(this.defautAngle);
         }
+
+        if (Input.touchCount > 0)
+        {
+            Touch touch = Input.GetTouch(0);
+            if (touch.phase == TouchPhase.Began && Input.mousePosition.x >= Screen.width / 2 && tag == "RightFripperTag")
+            {
+                // タッチ開始
+                SetAngle(this.flickAngle);
+            }
+            else if (touch.phase == TouchPhase.Ended)
+            {
+                // タッチ終了
+                SetAngle(this.defautAngle);
+            }
+            if (touch.phase == TouchPhase.Began && Input.mousePosition.x <= Screen.width / 2 && tag == "LeftFripperTag")
+            {
+                // タッチ開始
+                SetAngle(this.flickAngle);
+            }
+            else if (touch.phase == TouchPhase.Ended)
+            {
+                // タッチ終了
+                SetAngle(this.defautAngle);
+            }
+        }
     }
+
+
     public void SetAngle (float angle){
         JointSpring jointSpr = this.myHingeJoint.spring;
         jointSpr.targetPosition = angle;
