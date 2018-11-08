@@ -38,27 +38,40 @@ public class FripperController : MonoBehaviour {
 
         if (Input.touchCount > 0)
         {
-            Touch touch = Input.GetTouch(0);
-            if (touch.phase == TouchPhase.Began && Input.mousePosition.x >= Screen.width / 2 && tag == "RightFripperTag")
+            for (int i = 0; i < Input.touchCount; i++)
             {
-                // タッチ開始
-                SetAngle(this.flickAngle);
+
+                Touch touch = Input.GetTouch(0);
+                if (touch.phase == TouchPhase.Began && Input.mousePosition.x >= Screen.width / 2 && tag == "RightFripperTag" && Input.touchCount == 1)
+                {
+                    // タッチ開始
+                    SetAngle(this.flickAngle);
+                }
+                else if (touch.phase == TouchPhase.Ended)
+                {
+                    // タッチ終了
+                    SetAngle(this.defautAngle);
+                }
+                if (touch.phase == TouchPhase.Began && Input.mousePosition.x <= Screen.width / 2 && tag == "LeftFripperTag" && Input.touchCount == 1)
+                {
+                    // タッチ開始
+                    SetAngle(this.flickAngle);
+                }
+                else if (touch.phase == TouchPhase.Ended)
+                {
+                    // タッチ終了
+                    SetAngle(this.defautAngle);
+                }
+
+                if (touch.phase == TouchPhase.Began && Input.touchCount == 2){
+                    SetAngle(this.flickAngle);
+                }else if(touch.phase == TouchPhase.Ended){
+                    SetAngle(this.defautAngle);
+                }
+ 
+            
             }
-            else if (touch.phase == TouchPhase.Ended)
-            {
-                // タッチ終了
-                SetAngle(this.defautAngle);
-            }
-            if (touch.phase == TouchPhase.Began && Input.mousePosition.x <= Screen.width / 2 && tag == "LeftFripperTag")
-            {
-                // タッチ開始
-                SetAngle(this.flickAngle);
-            }
-            else if (touch.phase == TouchPhase.Ended)
-            {
-                // タッチ終了
-                SetAngle(this.defautAngle);
-            }
+
         }
     }
 
