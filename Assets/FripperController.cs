@@ -41,7 +41,7 @@ public class FripperController : MonoBehaviour {
             for (int i = 0; i < Input.touchCount; i++)
             {
 
-                Touch touch = Input.GetTouch(0);
+                Touch touch = Input.GetTouch(i);
                 if (touch.phase == TouchPhase.Began && Input.mousePosition.x >= Screen.width / 2 && tag == "RightFripperTag" && Input.touchCount == 1)
                 {
                     // タッチ開始
